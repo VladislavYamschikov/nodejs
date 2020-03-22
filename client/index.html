@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    html, body {
+        height:100%;
+        margin:0;
+    }
+    body {
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #request {
+        transform:scale(5);
+    }
+    </style>
+</head>
+<body>
+    <button type="button" id="request">Запрос!</button>
+    <script>
+        var button = document.getElementById("request");
+        button.addEventListener("click", function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET","http://localhost:591/", true );
+            xhr.onreadystatechange = function() {
+                if(this.readyState == this.DONE) {
+                    if(this.status != 200) {
+                        console.log("Ошибка: " + this.status);
+                    } else{
+                        console.log(this.responseText);
+                    }
+                }
+            };
+            xhr.send();
+        });
+    </script>
+    
+</body>
+</html>
